@@ -1,6 +1,8 @@
 
 function onLoad() {
   // alert('content.js 开始执行喽!')
+  console.log('I am content!');
+  
   const body = document.querySelector('body')
   if (body) {
     const box = document.createElement('div')
@@ -14,10 +16,12 @@ function onLoad() {
       left: 400px;
       z-index: 9999;
     `
-    // body.appendChild(box)
+    body.appendChild(box)
   } else {
     alert('body not found')
   }
 }
 
 window.addEventListener('load', onLoad)
+
+export {}
