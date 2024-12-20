@@ -3,13 +3,19 @@ import path from 'path'
 
 export default defineConfig({
   build: {
-    outDir: 'dist',            // 指定打包输出目录
-    sourcemap: true,           // 生成 source map 文件，便于调试
+    outDir: 'dist',
+    watch: {},
+    sourcemap: false,
     rollupOptions: {
       input: {
         background: path.resolve(__dirname, 'src/background/index.ts'),
         content: path.resolve(__dirname, 'src/content/index.ts'),
         popup: path.resolve(__dirname, 'src/popup/index.ts')
+      },
+      output: {
+        // 禁用哈希后缀
+        entryFileNames: '[name].js', // 输出文件名为原文件名
+        assetFileNames: '[name][extname]', // 输出资源文件名为原文件名 + 扩展名
       },
     },
   },

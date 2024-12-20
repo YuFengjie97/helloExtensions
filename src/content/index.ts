@@ -1,21 +1,23 @@
 
 function onLoad() {
   // alert('content.js 开始执行喽!')
-  console.log('I am content!');
+  console.log('I am content!445');
   
   const body = document.querySelector('body')
   if (body) {
     const box = document.createElement('div')
     box.style.cssText = `
-      width: 40px;
+      width: fit-content;
       height: 40px;
-      border-radius: 50%;
+      border-radius: 6px;
       background:red;
       position: fixed;
-      top: 400px;
-      left: 400px;
+      top: 10px;
+      right: 10px;
       z-index: 9999;
+      color: #fff;
     `
+    box.innerHTML = 'I am content'
     body.appendChild(box)
   } else {
     alert('body not found')

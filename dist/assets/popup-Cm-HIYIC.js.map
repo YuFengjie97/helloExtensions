@@ -1,1 +1,0 @@
-{"version":3,"file":"popup-Cm-HIYIC.js","sources":["../../src/popup/index.ts"],"sourcesContent":["console.log(\"I am popup\");\n\nexport {}"],"names":[],"mappings":"AAAA,QAAQ,IAAI,YAAY"}

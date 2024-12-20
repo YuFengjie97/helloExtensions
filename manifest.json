@@ -20,7 +20,7 @@
   },
   "content_scripts": [
     {
-      "js": ["dist/content/index.js"],
+      "js": ["dist/content.js"],
       "matches": [
         "<all_urls>",
         "https://developer.chrome.com/docs/extensions/*",
@@ -29,7 +29,7 @@
     }
   ],
   "background": {
-    "service_worker": "dist/background/index.js",
+    "service_worker": "dist/background.js",
     "type": "module"
   },
   "permissions": [
