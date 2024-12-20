@@ -5,7 +5,12 @@
   "description": "你好啊",
   "action": {
     "default_popup": "hello.html",
-    "default_icon": "images/icon-gift.png"
+    "default_icon": {
+      "16": "images/icon-gift.png",
+      "32": "images/icon-gift.png",
+      "48": "images/icon-gift.png",
+      "128": "images/icon-gift.png"
+    }
   },
   "icons": {
     "16": "images/icon.png",
@@ -25,5 +30,8 @@
   ],
   "background": {
     "service_worker": "dist/service_worker/index.js"
-  }
+  },
+  "permissions": [
+    "storage"
+  ]
 }
