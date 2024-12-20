@@ -4,7 +4,6 @@
   "version": "1.0",
   "description": "你好啊",
   "action": {
-    "default_popup": "popup.html",
     "default_icon": {
       "16": "images/icon-gift.png",
       "32": "images/icon-gift.png",
@@ -32,7 +31,13 @@
     "service_worker": "dist/background.js",
     "type": "module"
   },
-  "permissions": [
-    "storage"
-  ]
+  "permissions": ["storage", "activeTab", "scripting"],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+B",
+        "mac": "Command+B"
+      }
+    }
+  }
 }
