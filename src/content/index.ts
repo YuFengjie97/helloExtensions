@@ -26,4 +26,12 @@ function onLoad() {
 
 window.addEventListener('load', onLoad)
 
+
+window.addEventListener('beforeunload', (event) => {
+  // 提示用户是否要离开
+  const message = "你有未保存的更改，确定离开吗？";
+  return message;  // 现代浏览器提示
+});
+
 export {}
+
