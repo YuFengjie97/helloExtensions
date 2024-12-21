@@ -4,6 +4,7 @@
   "version": "1.0",
   "description": "你好啊",
   "action": {
+    "default_popup": "html/popup.html",
     "default_icon": {
       "16": "images/icon-gift.png",
       "32": "images/icon-gift.png",
