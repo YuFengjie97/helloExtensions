@@ -1,22 +1,44 @@
 import * as echarts from 'echarts';
+import { get_storage } from '../api';
 
-// 基于准备好的dom，初始化echarts实例
-var myChart = echarts.init(document.getElementById('chart1'));
-// 绘制图表
+(async () => {
+
+  const res = await get_storage()
+  const data = Object.entries(res.data).map(([hostname, info])=>{
+    return { name: hostname, value: info.total_seconds }
+  })
+  console.log(data);
+  
+
+  
+const myChart = echarts.init(document.getElementById('chart1'));
 myChart.setOption({
   title: {
-    text: 'ECharts 入门示例'
+    text: 'Browse Time',
+    left: 'center'
   },
-  tooltip: {},
-  xAxis: {
-    data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+  tooltip: {
+    trigger: 'item'
   },
-  yAxis: {},
+  legend: {
+    orient: 'vertical',
+    left: 'top'
+  },
   series: [
     {
-      name: '销量',
-      type: 'bar',
-      data: [5, 20, 36, 10, 10, 20]
+      name: 'Access From',
+      type: 'pie',
+      radius: '50%',
+      data,
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
     }
   ]
 });
+
+})()

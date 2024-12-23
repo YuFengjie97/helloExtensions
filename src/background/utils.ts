@@ -1,4 +1,4 @@
-interface TabLifeStorage {
+export interface TabLifeStorage {
   hostname: string
   last_time: number
   total_seconds: number

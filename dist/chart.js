@@ -1,4 +1,4 @@
-import "./assets/modulepreload-polyfill-DaKOjhqt.js";
+import { a as get_storage } from "./assets/index-XiIpHlBy.js";
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -72148,21 +72148,39 @@ use(install$1);
 use(install);
 use(installUniversalTransition);
 use(installLabelLayout);
-var myChart = init$1(document.getElementById("chart1"));
-myChart.setOption({
-  title: {
-    text: "ECharts 入门示例"
-  },
-  tooltip: {},
-  xAxis: {
-    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-  },
-  yAxis: {},
-  series: [
-    {
-      name: "销量",
-      type: "bar",
-      data: [5, 20, 36, 10, 10, 20]
-    }
-  ]
-});
+(async () => {
+  const res = await get_storage();
+  const data = Object.entries(res.data).map(([hostname, info]) => {
+    return { name: hostname, value: info.total_seconds };
+  });
+  console.log(data);
+  const myChart = init$1(document.getElementById("chart1"));
+  myChart.setOption({
+    title: {
+      text: "Browse Time",
+      left: "center"
+    },
+    tooltip: {
+      trigger: "item"
+    },
+    legend: {
+      orient: "vertical",
+      left: "top"
+    },
+    series: [
+      {
+        name: "Access From",
+        type: "pie",
+        radius: "50%",
+        data,
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: "rgba(0, 0, 0, 0.5)"
+          }
+        }
+      }
+    ]
+  });
+})();

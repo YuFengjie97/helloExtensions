@@ -35,3 +35,29 @@
     fetch(link.href, fetchOpts);
   }
 })();
+function send_message(message) {
+  return new Promise((resolve, reject) => {
+    chrome.runtime.sendMessage(message, (res) => {
+      if (chrome.runtime.lastError) {
+        console.error(`EORROR  ${message.type}`, chrome.runtime.lastError.message);
+        reject(new Error(chrome.runtime.lastError.message));
+      } else {
+        resolve(res);
+      }
+    });
+  });
+}
+function get_host_map() {
+  return send_message({ type: "get_host_map" });
+}
+function get_storage() {
+  return send_message({ type: "get_storage" });
+}
+function clear_storage() {
+  return send_message({ type: "clear_storage" });
+}
+export {
+  get_storage as a,
+  clear_storage as c,
+  get_host_map as g
+};

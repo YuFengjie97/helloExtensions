@@ -1,25 +1,4 @@
-import "./assets/modulepreload-polyfill-DaKOjhqt.js";
-function send_message(message) {
-  return new Promise((resolve, reject) => {
-    chrome.runtime.sendMessage(message, (res) => {
-      if (chrome.runtime.lastError) {
-        console.error(`EORROR  ${message.type}`, chrome.runtime.lastError.message);
-        reject(new Error(chrome.runtime.lastError.message));
-      } else {
-        resolve(res);
-      }
-    });
-  });
-}
-function get_host_map() {
-  return send_message({ type: "get_host_map" });
-}
-function get_storage() {
-  return send_message({ type: "get_storage" });
-}
-function clear_storage() {
-  return send_message({ type: "clear_storage" });
-}
+import { g as get_host_map, a as get_storage, c as clear_storage } from "./assets/index-XiIpHlBy.js";
 const bt_go_chart = document.querySelector("#go_chart");
 bt_go_chart == null ? void 0 : bt_go_chart.addEventListener("click", () => {
   const url = chrome.runtime.getURL(`/html/chart.html`);

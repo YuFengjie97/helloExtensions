@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "黑暗凄色幽冥幻想",
+  "version": "1.0",
+  "description": "你好啊",
+  "action": {
+    "default_popup": "html/popup.html"
+  },
+  "icons": {
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": [
+        "<all_urls>",
+        "https://developer.chrome.com/docs/extensions/*",
+        "https://developer.chrome.com/docs/webstore/*"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": ["tabs","storage", "activeTab", "scripting"],
+  "web_accessible_resources": [
+    {
+      "resources": ["html/chart.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
