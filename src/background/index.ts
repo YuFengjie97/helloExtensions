@@ -74,20 +74,17 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
  */
 chrome.runtime.onMessage.addListener((message: Message, sender, sendResponse) => {
   if (message.type === 'get_host_map') {
-    //@ts-ignore
     sendResponse({ data: host_map })
   }
 
   if (message.type === "get_storage") {
     get_storage_all().then(res => {
-      //@ts-ignore
       sendResponse({ data: res })
     })
   }
 
   if (message.type === "clear_storage") {
     clear_storage().then(res => {
-      //@ts-ignore
       sendResponse({ data: "success" })
     })
   }

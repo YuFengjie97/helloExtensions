@@ -5,13 +5,9 @@ export interface Message {
 
 export function send_message(message: Message) {
   return new Promise((resolve, reject) => {
-    //@ts-ignore
     chrome.runtime.sendMessage(message, (res: any) => {
-      //@ts-ignore
       if(chrome.runtime.lastError){
-        //@ts-ignore
         console.error(`EORROR  ${message.type}`, chrome.runtime.lastError.message);
-        //@ts-ignore
         reject(new Error(chrome.runtime.lastError.message));
       }
       else {

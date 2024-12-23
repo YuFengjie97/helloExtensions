@@ -9,7 +9,6 @@
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "rootDir": "./src",
     "outDir": "./dist",
-    "types": ["chrome-types"]
     },
   "include": ["src/**/*","**/*.d.ts","**/*.ts"],
   "exclude": ["node_modules","vite.config.ts"]
