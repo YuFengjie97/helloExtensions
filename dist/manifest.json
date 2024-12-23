@@ -4,13 +4,7 @@
   "version": "1.0",
   "description": "你好啊",
   "action": {
-    "default_popup": "html/popup.html",
-    "default_icon": {
-      "16": "images/icon-gift.png",
-      "32": "images/icon-gift.png",
-      "48": "images/icon-gift.png",
-      "128": "images/icon-gift.png"
-    }
+    "default_popup": "html/popup.html"
   },
   "icons": {
     "16": "images/icon.png",
@@ -20,7 +14,7 @@
   },
   "content_scripts": [
     {
-      "js": ["dist/content.js"],
+      "js": ["content.js"],
       "matches": [
         "<all_urls>",
         "https://developer.chrome.com/docs/extensions/*",
@@ -29,18 +23,10 @@
     }
   ],
   "background": {
-    "service_worker": "dist/background.js",
+    "service_worker": "background.js",
     "type": "module"
   },
   "permissions": ["tabs","storage", "activeTab", "scripting"],
-  "commands": {
-    "_execute_action": {
-      "suggested_key": {
-        "default": "Ctrl+B",
-        "mac": "Command+B"
-      }
-    }
-  },
   "web_accessible_resources": [
     {
       "resources": ["html/chart.html"],

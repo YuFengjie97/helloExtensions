@@ -1,3 +1,4 @@
+import "./assets/modulepreload-polyfill-DaKOjhqt.js";
 function send_message(message) {
   return new Promise((resolve, reject) => {
     chrome.runtime.sendMessage(message, (res) => {

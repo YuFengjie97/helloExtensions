@@ -11,8 +11,10 @@ export default defineConfig({
       input: {
         background: path.resolve(__dirname, 'src/background/index.ts'),
         content: path.resolve(__dirname, 'src/content/index.ts'),
-        popup: path.resolve(__dirname, 'src/popup/index.ts'),
-        chart: path.resolve(__dirname, 'src/chart/index.ts')
+        popup: path.resolve(__dirname, 'html/popup.html'),
+        chart: path.resolve(__dirname, 'html/chart.html')
+        // popup: path.resolve(__dirname, 'src/popup/index.ts'),
+        // chart: path.resolve(__dirname, 'src/chart/index.ts')
       },
       output: {
         // 禁用哈希后缀
