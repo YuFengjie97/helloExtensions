@@ -40,5 +40,11 @@
         "mac": "Command+B"
       }
     }
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["html/chart.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

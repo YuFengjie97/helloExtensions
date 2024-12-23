@@ -1,4 +1,5 @@
-import { get_url_info, TabLife } from "./utils";
+import { clear_storage, get_storage_all, get_url_info, TabLife } from "./utils";
+import { type Message } from '../api/index'
 
 // tabId --> hostname --> TabLife
 const tab_map: {
@@ -28,12 +29,10 @@ chrome.tabs.onActivated.addListener(async ({ tabId }) => {
   tab_active = tabId
 
   if (hostname === "" || hostname === 'newtab') return
-  
+
   if (!host_map[hostname]) {
     host_map[hostname] = new TabLife(hostname, now)
   }
-
-  console.log(host_map);
 });
 
 // 标签页关闭
@@ -58,23 +57,40 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
 
     const { hostname } = await get_url_info()
     const now = new Date().getTime()
-    if(hostname === "" || hostname === 'newtab') return
+    if (hostname === "" || hostname === 'newtab') return
 
     if (!host_map[hostname]) {
       host_map[hostname] = new TabLife(hostname, now)
     } else {
       host_map[hostname].update_last_time(now)
     }
-
-    console.log(host_map);
   }
 });
 
 
-// chrome.storage.local.clear()
+// 通信
+/**
+ * sendResponse ts 参数bug  https://github.com/GoogleChrome/chrome-types/issues/50
+ */
+chrome.runtime.onMessage.addListener((message: Message, sender, sendResponse) => {
+  if (message.type === 'get_host_map') {
+    //@ts-ignore
+    sendResponse({ data: host_map })
+  }
 
+  if (message.type === "get_storage") {
+    get_storage_all().then(res => {
+      //@ts-ignore
+      sendResponse({ data: res })
+    })
+  }
 
-// 将数据存储到 chrome.storage 中，方便查看
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  return undefined
+  if (message.type === "clear_storage") {
+    clear_storage().then(res => {
+      //@ts-ignore
+      sendResponse({ data: "success" })
+    })
+  }
+
+  return true
 });

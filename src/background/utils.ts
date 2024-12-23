@@ -48,14 +48,39 @@ async function storage_set<T>(key: string, val: T) {
     chrome.storage.local.set({ [key]: val }, () => resolve('success'));
   })
 }
-async function storage_get<T>(key: string): Promise<T | null> {
+
+/**
+ * 获取storage的内容
+ * @param key 未传入,undefined: 返回所有storage
+ * @param key string: 返回指定hostname的storage,如果没有,返回null
+ */
+function storage_get<T>(): Promise<{[k in string]: TabLife}>
+function storage_get<T>(key: string): Promise<T | null>
+async function storage_get<T>(key?: string): Promise<T | null | { [k in string]: T }> {
   return new Promise((resolve, reject) => {
     chrome.storage.local.get(key, (res) => {
+      // 空对象判断
       if (Object.keys(res).length === 0) {
         resolve(null)
       } else {
-        resolve(res[key])
+        if (key) {
+          resolve(res[key])
+        } else {
+          resolve(res)
+        }
       }
+    });
+  })
+}
+
+export function get_storage_all() {
+  return storage_get()
+}
+
+export function clear_storage() {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.clear(() => {
+      resolve('clear success')
     });
   })
 }

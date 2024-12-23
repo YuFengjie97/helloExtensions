@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  echarts:
+    specifier: ^5.5.1
+    version: 5.5.1
+
 devDependencies:
   '@types/node':
     specifier: ^22.10.2
@@ -412,6 +417,13 @@ packages:
     resolution: {integrity: sha512-ZBYwAoUa/piEK3RSFuN21PP0gXmtlkTfaq1UdowkRQTmoNT4w31MbmwckVYnyrUV36YCGAtpLFqVphIQtBqYFQ==}
     dev: true
 
+  /echarts@5.5.1:
+    resolution: {integrity: sha512-Fce8upazaAXUVUVsjgV6mBnGuqgO+JNDlcgF79Dksy4+wgGpQB2lmYoO4TSweFg/mZITdpGHomw/cNBJZj1icA==}
+    dependencies:
+      tslib: 2.3.0
+      zrender: 5.6.0
+    dev: false
+
   /esbuild@0.24.0:
     resolution: {integrity: sha512-FuLPevChGDshgSicjisSooU0cemp/sGXR841D5LHMB7mTVOmsEHcAxaH3irL53+8YDIeVNQEySh4DaYU/iuPqQ==}
     engines: {node: '>=18'}
@@ -505,6 +517,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /tslib@2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+    dev: false
+
   /typescript@5.7.2:
     resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
     engines: {node: '>=14.17'}
@@ -562,3 +578,9 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
+
+  /zrender@5.6.0:
+    resolution: {integrity: sha512-uzgraf4njmmHAbEUxMJ8Oxg+P3fT04O+9p7gY+wJRVxo8Ge+KmYv0WJev945EH4wFuc4OY2NLXz46FZrWS9xJg==}
+    dependencies:
+      tslib: 2.3.0
+    dev: false

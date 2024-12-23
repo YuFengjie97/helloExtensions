@@ -46,8 +46,22 @@ async function storage_get(key) {
       if (Object.keys(res).length === 0) {
         resolve(null);
       } else {
-        resolve(res[key]);
+        if (key) {
+          resolve(res[key]);
+        } else {
+          resolve(res);
+        }
       }
+    });
+  });
+}
+function get_storage_all() {
+  return storage_get();
+}
+function clear_storage() {
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.clear(() => {
+      resolve("clear success");
     });
   });
 }
@@ -87,7 +101,6 @@ chrome.tabs.onActivated.addListener(async ({ tabId }) => {
   if (!host_map[hostname]) {
     host_map[hostname] = new TabLife(hostname, now);
   }
-  console.log(host_map);
 });
 chrome.tabs.onRemoved.addListener(async (tabId) => {
   console.log("tab Remove  ");
@@ -110,9 +123,21 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     } else {
       host_map[hostname].update_last_time(now);
     }
-    console.log(host_map);
   }
 });
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  return void 0;
+  if (message.type === "get_host_map") {
+    sendResponse({ data: host_map });
+  }
+  if (message.type === "get_storage") {
+    get_storage_all().then((res) => {
+      sendResponse({ data: res });
+    });
+  }
+  if (message.type === "clear_storage") {
+    clear_storage().then((res) => {
+      sendResponse({ data: "success" });
+    });
+  }
+  return true;
 });
